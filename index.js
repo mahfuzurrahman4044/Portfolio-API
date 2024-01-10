@@ -25,15 +25,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/sendEmail", (req, res) => {
-  const { userEmail, subject, message } = req.body;
+  const {userName, userEmail, subject, message } = req.body;
 
   const mailOptions = {
+    userName: userName,
     from: userEmail,
     to: "mahfuzurrahman4044@gmail.com",
     subject: subject,
-    text: `From: ${userEmail}\n\n${message}`,
+    text: `Name: ${userName}\nFrom: ${userEmail}\n\n${message}`,
   };
-  //   console.log(mailOptions);
+  // console.log(mailOptions);
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
